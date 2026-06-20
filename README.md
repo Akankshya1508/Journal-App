@@ -1,16 +1,55 @@
-**Journal Application – Spring Boot Backend**
+**📓 Journal Service – Secure Backend System (Spring Boot)**
+A stateless, secure REST API backend for a journal management system built using Spring Boot, Spring Security, JWT authentication, and MongoDB.
+The system is designed as a production-style backend service with a focus on security, scalability, and clean architecture.
 
-A secure RESTful journal management system built using Spring Boot, JWT authentication, and MongoDB. It supports user-specific CRUD operations with logging and security filters.
+**🧩 System Overview**
+This application provides secure journal management capabilities for authenticated users. Each user can create, read, update, and delete their own journal entries.
 
-**Key Features**
-JWT-based authentication & authorization
-Secure REST APIs using Spring Security
-User-specific journal CRUD operations
-MongoDB integration using Spring Data MongoDB
-Request logging and exception handling
-Stateless authentication architecture
+The backend is designed as a stateless service, where authentication is handled using JWT tokens, eliminating server-side session dependency and enabling horizontal scalability.
 
-**Tech Stack**
+**🚀 Key Features**
+Stateless authentication using JWT
+Secure REST APIs using Spring Security filter chain
+User-specific data isolation (multi-user support)
+CRUD operations for journal entries
+MongoDB-based NoSQL persistence layer
+Centralized exception handling (@ControllerAdvice)
+Structured logging for observability
+Layered architecture (Controller → Service → Repository)
+
+**🏗️ System Architecture**
+The system follows a clean layered architecture:
+
+Controller Layer → API request handling
+Service Layer → Business logic + validation
+Repository Layer → Database interaction (MongoDB)
+Core Design Principles
+Stateless authentication (JWT-based)
+Secure request filtering via Spring Security chain
+Separation of concerns across layers
+REST-compliant API design
+No session storage on server (scalable architecture)
+
+**🔐 Authentication & Security Flow**
+User registers or logs in
+Credentials are validated on the server
+JWT token is generated and returned to the client
+Client sends token in Authorization: Bearer <token> header
+Spring Security filter intercepts request
+JWT is validated before request reaches controllers
+Access is granted or denied based on token validity
+
+**📌 API Design**
+Authentication APIs
+POST /auth/register   → Register new user
+POST /auth/login      → Authenticate user and generate JWT
+Journal APIs
+GET    /journal        → Fetch all journals for authenticated user
+POST   /journal        → Create a new journal entry
+PUT    /journal/{id}   → Update existing journal entry
+DELETE /journal/{id}   → Delete journal entry
+
+**🛠️ Tech Stack**
 Java
 Spring Boot
 Spring Security
@@ -18,32 +57,22 @@ Spring Data MongoDB
 JWT (JSON Web Token)
 MongoDB
 Maven
-Architecture
 
-**The system follows a layered architecture:**
-
-Controller → Service → Repository pattern
-Stateless authentication using JWT
-MongoDB as NoSQL persistence layer
-Spring Security filter chain for request validation
-
-**Authentication Flow**
-
-User logs in / registers
-Server generates JWT token
-Client sends token in Authorization header
-Spring Security validates token on each request
-Access granted to protected endpoints
-API Endpoints
-POST /auth/register – Register user
-POST /auth/login – Authenticate & get JWT
-GET /journal – Get user journals
-POST /journal – Create journal entry
-PUT /journal/{id} – Update entry
-DELETE /journal/{id} – Delete entry
-How to Run
-git clone https://github.com/your-username/repo-name.git
-cd repo-name
+**⚙️ How to Run**
+git clone https://github.com/Akankshya1508/Journal-App.git
+cd Journal-App
 mvn spring-boot:run
-MongoDB Configuration
-spring.data.mongodb.uri=your-mongo-uri
+
+**🗄️ Configuration**
+Configure MongoDB connection in application.properties:
+spring.data.mongodb.uri=your-mongodb-connection-string;
+
+**📊 System Qualities**
+Stateless and horizontally scalable backend design
+Secure authentication and authorization layer
+Clean separation of business logic and data access
+Production-style REST API structure
+Extensible architecture for future microservices migration
+
+**👩‍💻 Ownership**
+Built by Akankshya
